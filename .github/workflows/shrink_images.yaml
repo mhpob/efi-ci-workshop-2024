@@ -29,8 +29,8 @@ jobs:
     - name: Install ImageMagick
       if: steps.large-img-check.outputs.big_image == 'true'
       run: |
-        wget https://imagemagick.org/archive/binaries/magick -o /magick
-        chmod +x /magick
+        wget https://imagemagick.org/archive/binaries/magick -o magick
+        chmod +x magick
 
     - name: Shrink images
       if: steps.large-img-check.outputs.big_image == 'true'
@@ -50,7 +50,7 @@ jobs:
       run: |
           git config user.name github-actions
           git config user.email github-actions@github.com
-          git add --all
+          git add --all -- ':!magick'
           git commit --allow-empty -m "[auto] Reduce image file size"
           git push
     
